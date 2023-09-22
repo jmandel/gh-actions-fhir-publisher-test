@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Debug
         run: whoami && env && pwd && ls -la && groups && mkdir .fhir-package-cache
+      - name: With latest sushi
+        run: /home/publisher/bin/with-latest-sushi.sh
       - name: Debug 2
         run: ls -la /home/publisher/.node/bin && which sushi && sushi --version && pwd && ls -la
       - name: Update the image to the latest publisher

@@ -13,10 +13,8 @@ jobs:
     container:
       image: hl7fhir/ig-publisher-base:latest
     steps:
-      - name: Debug
-        run: whoami && env && pwd && ls -la && groups && mkdir .fhir-package-cache
       - name: With latest sushi
-        run: >
+        run: |
          gosu publisher /home/publisher/bin/with-latest-sushi.sh &&
          which sushi &&
          sushi --version
@@ -49,7 +47,7 @@ jobs:
           path: ig-registry
 
       - name: Run publisher command
-        run: java -jar ./publisher.jar publisher -ig core -package-cache-folder ./fhir-package-cache
+        run: java -jar ./publisher.jar publisher -ig core
 
       - name: Run publisher command for publishing release
-        run: java -Dfile.encoding=UTF-8 -jar publisher.jar -go-publish -package-cache-folder ./fhir-package-cache -source core -web $(pwd)/webroot -registry ./ig-registry/fhir-ig-list.json -history ./history-template -templates $(pwd)/webroot/templates
+        run: java -Dfile.encoding=UTF-8 -jar publisher.jar -go-publish -source core -web $(pwd)/webroot -registry ./ig-registry/fhir-ig-list.json -history ./history-template -templates $(pwd)/webroot/templates

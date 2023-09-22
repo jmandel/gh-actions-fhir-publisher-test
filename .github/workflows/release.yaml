@@ -12,14 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: hl7fhir/ig-publisher-base:latest
-      env: {}
     steps:
+      - name: Debug
+        run: whoami && env && pwd && ls -la && groups && mkdir .fhir-package-cache
+      - name: Debug 2
+        run: ls -la /home/publisher/.node/bin && which sushi
       - name: Update the image to the latest publisher
         run: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./publisher.jar --create-dirs
-
-      - name: Check updated sushi version
-        run: whoami && env && pwd && ls -la && groups
-
       - name: Checkout medigree/core to ./core
         uses: actions/checkout@v2
         with:

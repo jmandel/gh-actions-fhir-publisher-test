@@ -18,7 +18,9 @@ jobs:
       - name: With latest sushi
         run: >
          git config --global --add safe.directory /home/publisher/bin/ig-publisher-scripts &&
-         /home/publisher/bin/with-latest-sushi.sh
+         /home/publisher/bin/with-latest-sushi.sh &&
+         which sushi &&
+         sushi --version
       - name: Debug 2
         run: ls -la /home/publisher/.node/bin && which sushi && sushi --version && pwd && ls -la
       - name: Update the image to the latest publisher

@@ -17,8 +17,7 @@ jobs:
         run: whoami && env && pwd && ls -la && groups && mkdir .fhir-package-cache
       - name: With latest sushi
         run: >
-         git config --global --add safe.directory /home/publisher/bin/ig-publisher-scripts &&
-         /home/publisher/bin/with-latest-sushi.sh &&
+         gosu publisher /home/publisher/bin/with-latest-sushi.sh &&
          which sushi &&
          sushi --version
       - name: Debug 2

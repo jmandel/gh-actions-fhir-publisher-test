@@ -16,7 +16,7 @@ jobs:
       - name: Debug
         run: whoami && env && pwd && ls -la && groups && mkdir .fhir-package-cache
       - name: Debug 2
-        run: ls -la /home/publisher/.node/bin && which sushi
+        run: ls -la /home/publisher/.node/bin && which sushi && sushi ---version && pwd && ls -la
       - name: Update the image to the latest publisher
         run: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./publisher.jar --create-dirs
       - name: Checkout medigree/core to ./core
